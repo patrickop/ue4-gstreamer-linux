@@ -28,23 +28,23 @@ private:
 IGstAppSrc* IGstAppSrc::CreateInstance()
 {
 	auto Obj = new FGstAppSrcImpl();
-	GST_LOG_DBG_A("GstAppSrc: CreateInstance %p", Obj);
+//	GST_LOG_DBG_A("GstAppSrc: CreateInstance %p", Obj);
 	return Obj;
 }
 
 void FGstAppSrcImpl::Destroy()
 {
-	GST_LOG_DBG_A("GstAppSrc: Destroy %p", this);
+//	GST_LOG_DBG_A("GstAppSrc: Destroy %p", this);
 	delete this;
 }
 
 bool FGstAppSrcImpl::Connect(IGstPipeline* Pipeline, const char* ElementName)
 {
-	GST_LOG_DBG_A("GstAppSrc: Connect <%s>", ElementName);
+//	GST_LOG_DBG_A("GstAppSrc: Connect <%s>", ElementName);
 
 	if (m_AppSrc)
 	{
-		GST_LOG_ERR_A("GstAppSrc: Already connected");
+//		GST_LOG_ERR_A("GstAppSrc: Already connected");
 		return false;
 	}
 
@@ -55,17 +55,17 @@ bool FGstAppSrcImpl::Connect(IGstPipeline* Pipeline, const char* ElementName)
 		m_AppSrc = gst_bin_get_by_name(GST_BIN(Pipeline->GetGPipeline()), ElementName);
 		if (!m_AppSrc)
 		{
-			GST_LOG_ERR_A("gst_bin_get_by_name failed");
+//			GST_LOG_ERR_A("gst_bin_get_by_name failed");
 			break;
 		}
 
 		g_object_set(m_AppSrc, "emit-signals", TRUE, nullptr);
 
-		GST_LOG_DBG_A("GstAppSrc: Connect SUCCESS");
+//		GST_LOG_DBG_A("GstAppSrc: Connect SUCCESS");
 		return true;
 	}
 
-	GST_LOG_ERR_A("GstAppSrc: Connect FAILED");
+//	GST_LOG_ERR_A("GstAppSrc: Connect FAILED");
 	Disconnect();
 	return false;
 }
@@ -74,7 +74,7 @@ void FGstAppSrcImpl::Disconnect()
 {
 	if (m_AppSrc)
 	{
-		GST_LOG_DBG_A("GstAppSrc: Disconnect <%s>", m_Name.c_str());
+//		GST_LOG_DBG_A("GstAppSrc: Disconnect <%s>", m_Name.c_str());
 		gst_app_src_end_of_stream(GST_APP_SRC(m_AppSrc));
 		g_object_set(m_AppSrc, "emit-signals", FALSE, nullptr);
 		gst_object_unref(m_AppSrc);
@@ -96,6 +96,6 @@ void FGstAppSrcImpl::PushBuffer(IGstAppSrcBuffer* Buffer)
 	const GstFlowReturn Result = gst_app_src_push_buffer(GST_APP_SRC(m_AppSrc), BufferObj);
 	if (Result != GST_FLOW_OK)
 	{
-		GST_LOG_ERR_A("gst_app_src_push_buffer failed: GstFlowReturn=%d (%s)", (int)Result, gst_flow_get_name(Result));
+//		GST_LOG_ERR_A("gst_app_src_push_buffer failed: GstFlowReturn=%d (%s)", (int)Result, gst_flow_get_name(Result));
 	}
 }

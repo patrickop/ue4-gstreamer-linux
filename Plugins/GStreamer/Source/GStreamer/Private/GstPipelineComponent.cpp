@@ -37,7 +37,7 @@ bool UGstPipelineComponent::StartPipeline()
 {
 	if (Pipeline)
 	{
-		GST_LOG_ERR(TEXT("GstPipelineComponent: Already started"));
+//		GST_LOG_ERR(TEXT("GstPipelineComponent: Already started"));
 		return false;
 	}
 

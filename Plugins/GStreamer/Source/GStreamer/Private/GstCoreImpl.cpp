@@ -13,7 +13,7 @@ bool FGstCoreImpl::Init(const char* BinPath, const char* PluginPath)
 
 	guint major, minor, micro, nano;
 	gst_version(&major, &minor, &micro, &nano);
-	GST_LOG_DBG_A("GStreamer: Version %d.%d.%d", major, minor, micro);
+//	GST_LOG_DBG_A("GStreamer: Version %d.%d.%d", major, minor, micro);
 
 	GstRegistry* registry = gst_registry_get();
 	gst_registry_scan_path(registry, BinPath);

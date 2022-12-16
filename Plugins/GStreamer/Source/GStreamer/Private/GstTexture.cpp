@@ -83,7 +83,7 @@ void FGstTexture::TickGameThread()
 	double CurTime = FPlatformTime::Seconds();
 	if (m_StatTimer <= CurTime)
 	{
-		GST_LOG_DBG(TEXT("GstTexture: <%s> SampleCount=%d TickCount=%d EnqueCount=%d RenderCount=%d"), *m_Name, m_SampleCount, m_TickCount, m_EnqueCount, m_RenderCount);
+//		GST_LOG_DBG(TEXT("GstTexture: <%s> SampleCount=%d TickCount=%d EnqueCount=%d RenderCount=%d"), *m_Name, m_SampleCount, m_TickCount, m_EnqueCount, m_RenderCount);
 		m_StatTimer = CurTime + 1.0;
 		m_SampleCount = 0;
 		m_TickCount = 0;
@@ -126,7 +126,7 @@ void FGstTexture::Resize(IGstSample* Sample)
 	{
 		Release();
 
-		GST_LOG_DBG(TEXT("GstTexture: Resize <%s> Width=%d Height=%d GstFormat=%d"), 
+//		GST_LOG_DBG(TEXT("GstTexture: Resize <%s> Width=%d Height=%d GstFormat=%d"), 
 			*m_Name, Sample->GetWidth(), Sample->GetHeight(), Sample->GetFormat());
 
 		switch (SampleFormat)
@@ -163,12 +163,12 @@ void FGstTexture::Resize(IGstSample* Sample)
 
 void FGstTexture::RenderCmd_CreateTexture()
 {
-	GST_LOG_DBG(TEXT("DynamicTexture: CreateTransient <%s>"), *m_Name);
+//	GST_LOG_DBG(TEXT("DynamicTexture: CreateTransient <%s>"), *m_Name);
 
 	auto Tex = UTexture2D::CreateTransient(m_Width, m_Height, m_UeFormat);
 	if (!Tex)
 	{
-		GST_LOG_ERR(TEXT("CreateTransient failed"));
+//		GST_LOG_ERR(TEXT("CreateTransient failed"));
 	}
 	else
 	{
@@ -196,7 +196,7 @@ void FGstTexture::Release()
 {
 	if (m_TextureObject)
 	{
-		GST_LOG_DBG(TEXT("DynamicTexture: Release <%s>"), *m_Name);
+//		GST_LOG_DBG(TEXT("DynamicTexture: Release <%s>"), *m_Name);
 		FlushRenderingCommands();
 		m_TextureObject->RemoveFromRoot();
 		m_TextureObject = nullptr;

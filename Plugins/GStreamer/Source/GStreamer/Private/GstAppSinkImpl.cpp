@@ -44,13 +44,13 @@ private:
 IGstAppSink* IGstAppSink::CreateInstance()
 {
 	auto Obj = new FGstAppSinkImpl();
-	GST_LOG_DBG_A("GstAppSink: CreateInstance %p", Obj);
+//	GST_LOG_DBG_A("GstAppSink: CreateInstance %p", Obj);
 	return Obj;
 }
 
 void FGstAppSinkImpl::Destroy()
 {
-	GST_LOG_DBG_A("GstAppSink: Destroy %p", this);
+//	GST_LOG_DBG_A("GstAppSink: Destroy %p", this);
 	delete this;
 }
 
@@ -58,11 +58,11 @@ static GstFlowReturn NewSampleFunc(GstElement* Sink, FGstAppSinkImpl* Context) {
 
 bool FGstAppSinkImpl::Connect(IGstPipeline* Pipeline, const char* ElementName, IGstAppSinkCallback* Callback)
 {
-	GST_LOG_DBG_A("GstAppSink: Connect <%s>", ElementName);
+//	GST_LOG_DBG_A("GstAppSink: Connect <%s>", ElementName);
 
 	if (m_AppSink)
 	{
-		GST_LOG_ERR_A("GstAppSink: Already connected");
+//		GST_LOG_ERR_A("GstAppSink: Already connected");
 		return false;
 	}
 
@@ -74,18 +74,18 @@ bool FGstAppSinkImpl::Connect(IGstPipeline* Pipeline, const char* ElementName, I
 		m_AppSink = gst_bin_get_by_name(GST_BIN(Pipeline->GetGPipeline()), ElementName);
 		if (!m_AppSink)
 		{
-			GST_LOG_ERR_A("gst_bin_get_by_name failed");
+//			GST_LOG_ERR_A("gst_bin_get_by_name failed");
 			break;
 		}
 
 		g_object_set(m_AppSink, "emit-signals", TRUE, nullptr);
 		g_signal_connect(m_AppSink, "new-sample", G_CALLBACK(NewSampleFunc), this);
 
-		GST_LOG_DBG_A("GstAppSink: Connect SUCCESS");
+//		GST_LOG_DBG_A("GstAppSink: Connect SUCCESS");
 		return true;
 	}
 
-	GST_LOG_ERR_A("GstAppSink: Connect FAILED");
+//	GST_LOG_ERR_A("GstAppSink: Connect FAILED");
 	Disconnect();
 	return false;
 }
@@ -94,7 +94,7 @@ void FGstAppSinkImpl::Disconnect()
 {
 	if (m_AppSink)
 	{
-		GST_LOG_DBG_A("GstAppSink: Disconnect <%s>", m_Name.c_str());
+//		GST_LOG_DBG_A("GstAppSink: Disconnect <%s>", m_Name.c_str());
 
 		g_object_set(m_AppSink, "emit-signals", FALSE, nullptr);
 		gst_object_unref(m_AppSink);

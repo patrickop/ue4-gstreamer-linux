@@ -99,7 +99,7 @@ void UGstAppSrcComponent::PushBufferAsync(FTextureRenderTargetResource* TextureR
 {
 	if (BufferQueue.Num() > MaxQueueLength)
 	{
-		GST_LOG_ERR(TEXT("PushBufferAsync overflow"));
+//		GST_LOG_ERR(TEXT("PushBufferAsync overflow"));
 		return;
 	}
 

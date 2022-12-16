@@ -79,7 +79,7 @@ void FGStreamerModule::StartupModule()
 
 void FGStreamerModule::ShutdownModule()
 {
-	GST_LOG_DBG(TEXT("ShutdownModule"));
+//	GST_LOG_DBG(TEXT("ShutdownModule"));
 
 	FGstCoreImpl::Deinit();
 
