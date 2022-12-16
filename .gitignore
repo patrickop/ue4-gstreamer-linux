@@ -22,3 +22,4 @@ Plugins/GStreamer/Intermediate/
 *.opendb
 *.exe
 *.pdb
+*.swp

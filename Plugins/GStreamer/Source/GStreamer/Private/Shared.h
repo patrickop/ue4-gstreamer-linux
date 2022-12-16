@@ -5,7 +5,7 @@
 
 // CONFIG
 
-#define GST_ENABLE_DEBUG_LOG
+//#define GST_ENABLE_DEBUG_LOG
 
 // LOG
 

@@ -47,5 +47,13 @@ public class GStreamer : ModuleRules
             PublicDelayLoadDLLs.Add("gstvideo-1.0-0.dll");
             PublicDelayLoadDLLs.Add("gstapp-1.0-0.dll");
         }
+        if (Target.Platform == UnrealTargetPlatform.Linux)
+        {
+            PrivateIncludePaths.Add("/usr/include/gstreamer-1.0/");
+            PrivateIncludePaths.Add("/usr/include/glib-2.0");
+            PrivateIncludePaths.Add("/usr/lib/x86_64-linux-gnu/glib-2.0/include/");
+	}
     }
+
+    
 }
