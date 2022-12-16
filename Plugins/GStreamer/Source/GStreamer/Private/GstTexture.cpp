@@ -100,10 +100,10 @@ void FGstTexture::RenderCmd_UpdateTexture(IGstSample* Sample)
 	SCOPED_PROFILER;
 
 	auto Tex = GetTextureObject();
-	if (Tex && Tex->Resource)
+	if (Tex && Tex->GetResource())
 	{
 		RHIUpdateTexture2D(
-			Tex->Resource->GetTexture2DRHI(),
+			Tex->GetResource()->GetTexture2DRHI(),
 			0,
 			FUpdateTextureRegion2D(0, 0, 0, 0, Sample->GetWidth(), Sample->GetHeight()),
 			m_Pitch,
@@ -127,7 +127,7 @@ void FGstTexture::Resize(IGstSample* Sample)
 		Release();
 
 //		GST_LOG_DBG(TEXT("GstTexture: Resize <%s> Width=%d Height=%d GstFormat=%d"), 
-			*m_Name, Sample->GetWidth(), Sample->GetHeight(), Sample->GetFormat());
+//			*m_Name, Sample->GetWidth(), Sample->GetHeight(), Sample->GetFormat());
 
 		switch (SampleFormat)
 		{

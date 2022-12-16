@@ -52,6 +52,11 @@ public class GStreamer : ModuleRules
             PrivateIncludePaths.Add("/usr/include/gstreamer-1.0/");
             PrivateIncludePaths.Add("/usr/include/glib-2.0");
             PrivateIncludePaths.Add("/usr/lib/x86_64-linux-gnu/glib-2.0/include/");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libglib-2.0.so");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libgobject-2.0.so");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libgstreamer-1.0.so");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libgstvideo-1.0.so");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libgstapp-1.0.so");
 	}
     }
 

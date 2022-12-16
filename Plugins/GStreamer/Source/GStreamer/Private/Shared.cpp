@@ -76,7 +76,7 @@ void GstLogW(const char* File, int Line, EGstVerbosity::Type Verbosity, const wc
 #endif
 }
 
-void* SysLoadLibrary(const wchar_t* Name)
+void* SysLoadLibrary(const char16_t* Name)
 {
 	return FPlatformProcess::GetDllHandle(Name);
 }

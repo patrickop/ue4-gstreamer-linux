@@ -53,7 +53,7 @@ void GstLogW(const char* File, int Line, EGstVerbosity::Type Verbosity, const wc
 
 // UTILS
 
-void* SysLoadLibrary(const wchar_t* Name);
+void* SysLoadLibrary(const char16_t* Name);
 void SysFreeLibrary(void* Handle);
 void* SysGetProcAddress(void* Handle, const char* Name);
 
