@@ -16,6 +16,13 @@ Set environment variable `GSTREAMER_ROOT=C:\gstreamer_runtime\1.0\msvc_x86_64` t
 
 Launch project and hit play
 
+## Building
+
+```
+cp ${UNREAL}/Engine/Build/BatchFiles
+Mode=Debug ./RunUAT.sh BuildPlugin -plugin=/home/testuser/tools/ue4-gstreamer-linux/Plugins/GStreamer/GStreamer.uplugin -package=/tmp/GStreamer -TargetPlatform=Linux
+```
+
 ## AppSink examples
 
 Test pattern:
@@ -34,3 +41,9 @@ Capture and stream render target:
 
 Preview stream:
 `gst-launch-1.0 -v tcpclientsrc host=127.0.0.1 port=5000 ! videoparse width=640 height=480 framerate=60/1 format=8 ! autovideoconvert ! autovideosink`
+
+Locally using shared memory (capture):
+`appsrc name=src caps=video/x-raw,width=(int)640,height=(int)480,format=(string)BGRA,framerate=(fraction)60/1 ! shmsink socket-path=/tmp/1.stream sync=false wait-for-connection=false shm-size=100000000 
+
+Locally using shared memory (stream):
+`gst-launch-1.0 -v shmsrc socket-path=/tmp/1.stream is_live=true ! videoparse width=(int)640 height=(int)480 framerate=60/1 format=8 ! autovideoconvert ! autovideosink sync=false`
